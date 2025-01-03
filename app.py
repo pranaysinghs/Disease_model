@@ -71,6 +71,7 @@ if selected == 'Diabetes Prediction':
     # creating a button for Prediction
     if st.button('Diabetes Test Result'):
         user_input = [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]
+        user_input = [float(x) for x in user_input]  # Convert input to float
         diabetes_prediction = diabetes_model.predict([user_input])
 
         if diabetes_prediction[0] == 1:
@@ -127,6 +128,7 @@ if selected == 'Heart Disease Prediction':
     # creating a button for Prediction
     if st.button('Heart Disease Test Result'):
         user_input = [Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope]
+        user_input = [float(x) for x in user_input]  # Convert input to float
         heart_disease_prediction = heart_disease_model.predict([user_input])
 
         if heart_disease_prediction[0] == 1:
@@ -218,7 +220,7 @@ if selected == "Parkinsons Prediction":
                       RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
                       APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
 
-        user_input = [float(x) for x in user_input]
+        user_input = [float(x) for x in user_input]  # Convert input to float
 
         parkinsons_prediction = parkinsons_model.predict([user_input])
 
