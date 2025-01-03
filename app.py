@@ -20,6 +20,8 @@ try:
     diabetes_model = pickle.load(open(diabetes_model_path, 'rb'))
     heart_disease_model = pickle.load(open(heart_disease_model_path, 'rb'))
     parkinsons_model = pickle.load(open(parkinsons_model_path, 'rb'))
+
+    st.success("Models loaded successfully.")
 except (OSError, IOError, pickle.UnpicklingError) as e:
     st.error(f"Error loading model: {e}")
 
@@ -71,15 +73,20 @@ if selected == 'Diabetes Prediction':
     # creating a button for Prediction
     if st.button('Diabetes Test Result'):
         user_input = [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]
-        user_input = [float(x) for x in user_input]  # Convert input to float
-        diabetes_prediction = diabetes_model.predict([user_input])
+        try:
+            user_input = [float(x) for x in user_input]  # Convert input to float
+            diabetes_prediction = diabetes_model.predict([user_input])
 
-        if diabetes_prediction[0] == 1:
-            diab_diagnosis = "The person has diabetes"
-            st.markdown(f"<h3 style='color: red;'>{diab_diagnosis}</h3>", unsafe_allow_html=True)
-        else:
-            diab_diagnosis = "The person does not have diabetes"
-            st.markdown(f"<h3 style='color: green;'>{diab_diagnosis}</h3>", unsafe_allow_html=True)
+            if diabetes_prediction[0] == 1:
+                diab_diagnosis = "The person has diabetes"
+                st.markdown(f"<h3 style='color: red;'>{diab_diagnosis}</h3>", unsafe_allow_html=True)
+            else:
+                diab_diagnosis = "The person does not have diabetes"
+                st.markdown(f"<h3 style='color: green;'>{diab_diagnosis}</h3>", unsafe_allow_html=True)
+        except NameError:
+            st.error("The model is not loaded properly.")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
 # Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
@@ -128,15 +135,20 @@ if selected == 'Heart Disease Prediction':
     # creating a button for Prediction
     if st.button('Heart Disease Test Result'):
         user_input = [Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG, MaxHR, ExerciseAngina, Oldpeak, ST_Slope]
-        user_input = [float(x) for x in user_input]  # Convert input to float
-        heart_disease_prediction = heart_disease_model.predict([user_input])
+        try:
+            user_input = [float(x) for x in user_input]  # Convert input to float
+            heart_disease_prediction = heart_disease_model.predict([user_input])
 
-        if heart_disease_prediction[0] == 1:
-            heart_diagnosis = "The person has heart disease"
-            st.markdown(f"<h3 style='color: red;'>{heart_diagnosis}</h3>", unsafe_allow_html=True)
-        else:
-            heart_diagnosis = "The person does not have heart disease"
-            st.markdown(f"<h3 style='color: green;'>{heart_diagnosis}</h3>", unsafe_allow_html=True)
+            if heart_disease_prediction[0] == 1:
+                heart_diagnosis = "The person has heart disease"
+                st.markdown(f"<h3 style='color: red;'>{heart_diagnosis}</h3>", unsafe_allow_html=True)
+            else:
+                heart_diagnosis = "The person does not have heart disease"
+                st.markdown(f"<h3 style='color: green;'>{heart_diagnosis}</h3>", unsafe_allow_html=True)
+        except NameError:
+            st.error("The model is not loaded properly.")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
 # Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
@@ -219,14 +231,17 @@ if selected == "Parkinsons Prediction":
         user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,
                       RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
                       APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
+        try:
+            user_input = [float(x) for x in user_input]  # Convert input to float
+            parkinsons_prediction = parkinsons_model.predict([user_input])
 
-        user_input = [float(x) for x in user_input]  # Convert input to float
-
-        parkinsons_prediction = parkinsons_model.predict([user_input])
-
-        if parkinsons_prediction[0] == 1:
-            parkinsons_diagnosis = "The person has Parkinson's disease"
-            st.markdown(f"<h3 style='color: red;'>{parkinsons_diagnosis}</h3>", unsafe_allow_html=True)
-        else:
-            parkinsons_diagnosis = "The person does not have Parkinson's disease"
-            st.markdown(f"<h3 style='color: green;'>{parkinsons_diagnosis}</h3>", unsafe_allow_html=True)
+            if parkinsons_prediction[0] == 1:
+                parkinsons_diagnosis = "The person has Parkinson's disease"
+                st.markdown(f"<h3 style='color: red;'>{parkinsons_diagnosis}</h3>", unsafe_allow_html=True)
+            else:
+                parkinsons_diagnosis = "The person does not have Parkinson's disease"
+                st.markdown(f"<h3 style='color: green;'>{parkinsons_diagnosis}</h3>", unsafe_allow_html=True)
+        except NameError:
+            st.error("The model is not loaded properly.")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
