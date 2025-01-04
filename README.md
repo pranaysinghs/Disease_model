@@ -8,7 +8,7 @@ The Streamlit app allows users to predict the likelihood of having diabetes, hea
 
 ## Files
 
-- app.py: The main Streamlit app code.
+- `app.py`: The main Streamlit app code.
 - `requirements.txt`: List of dependencies required to run the Streamlit app.
 - `colab_files_to_train_models/`: Contains Jupyter notebooks used for training the models.
 - `dataset/`: Contains the datasets used for training the models.
