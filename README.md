@@ -1,4 +1,3 @@
-# Disease_model
 # Multiple Disease Prediction Streamlit App
 
 This repository contains the codebase for the "Multiple Disease Prediction Streamlit App". The training notebooks and datasets are also provided in the respective folders.
